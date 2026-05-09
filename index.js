@@ -3,7 +3,6 @@ const app = express();
 app.use(express.json());
 app.use(express.static('public'));
 
-// This is the endpoint for your RPA bot or Postman
 app.post('/api/ingest', (req, res) => {
   const { fileName, rawContent, title } = req.body;
   
@@ -11,7 +10,6 @@ app.post('/api/ingest', (req, res) => {
   console.log("Source File:", fileName);
   console.log("Title Preview:", title);
   
-  // This simulates the "Transformation" part of your project
   const responseMessage = {
     status: "Success",
     processed_at: new Date().toISOString(),
@@ -21,7 +19,6 @@ app.post('/api/ingest', (req, res) => {
   res.status(201).json(responseMessage);
 });
 
-// Start the server
 app.listen(3000, () => {
   console.log("DHL Logistics API is now ONLINE.");
 });
