@@ -1,0 +1,181 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>DHL Knowledge Base</title>
+    <style>
+        body { font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; margin: 40px; background: #f4f4f4; color: #333; }
+        h1 { color: #d40511; border-bottom: 3px solid #ffcc00; padding-bottom: 10px; }
+        
+        /* Search Bar Styling */
+        #search-container { margin-bottom: 20px; }
+        #search-input { padding: 10px; width: 300px; border: 1px solid #ccc; border-radius: 4px; }
+
+        /* Card Styling */
+        .card { 
+            background: white; 
+            padding: 20px; 
+            margin-bottom: 15px; 
+            border-left: 6px solid #ffcc00; 
+            box-shadow: 0 4px 6px rgba(0,0,0,0.1); 
+            border-radius: 4px;
+        }
+        .status { font-weight: bold; padding: 2px 8px; border-radius: 12px; font-size: 0.9em; }
+        .status-draft { background: #fff3cd; color: #856404; }
+        .status-published { background: #d4edda; color: #155724; }
+        
+        /* Button Styling */
+        button { 
+            background: #d40511; 
+            color: white; 
+            border: none; 
+            padding: 10px 20px; 
+            cursor: pointer; 
+            border-radius: 4px; 
+            font-weight: bold; 
+            transition: background 0.3s;
+        }
+        button:hover { background: #990000; }
+        small { color: #666; font-style: italic; }
+    </style>
+</head>
+<body>
+
+    <button onclick="logout()" style="float: right; background: #666;">Logout</button>
+
+    <h1>DHL Logistics: Knowledge Base Articles</h1>
+
+    <div id="filter-container" style="background: #eee; padding: 15px; margin-bottom: 20px; border-radius: 5px; display: flex; gap: 10px;">
+        <input type="text" id="search-input" placeholder="Search title..." onkeyup="applyFilters()">
+        
+        <select id="status-filter" onchange="applyFilters()">
+            <option value="all">All Statuses</option>
+            <option value="Draft">Draft</option>
+            <option value="Published">Published</option>
+        </select>
+
+        <select id="tag-filter" onchange="applyFilters()">
+            <option value="all">All Tags</option>
+            <option value="Logistics">Logistics</option>
+            <option value="RPA">RPA</option>
+        </select>
+    </div>
+
+    <div id="articles-list">Loading articles...</div>
+
+    <script>
+
+        // Check if user is logged in. If not, send them to login page.
+        if (localStorage.getItem('dhl_auth') !== 'true') {
+            window.location.href = 'login.html';
+        }
+
+        function logout() {
+            localStorage.removeItem('dhl_auth');
+            window.location.href = 'login.html';
+        }
+
+        let allArticles = [];
+
+        // 1. Load articles from the server
+        function loadArticles() {
+            fetch('/api/articles')
+                .then(res => res.json())
+                .then(data => {
+                    allArticles = data;
+                    renderArticles(allArticles);
+                })
+                .catch(err => {
+                    document.getElementById('articles-list').innerText = "Error loading data.";
+                    console.error(err);
+                });
+        }
+
+        // 2. Display the articles on the screen
+        function renderArticles(articles) {
+            const list = document.getElementById('articles-list');
+            list.innerHTML = ''; 
+
+            if (articles.length === 0) {
+                list.innerHTML = '<p>No articles found.</p>';
+                return;
+            }
+
+            articles.forEach(article => {
+                const div = document.createElement('div');
+                div.className = 'card';
+                
+                const isDraft = article.status === 'Draft';
+                const statusClass = isDraft ? 'status-draft' : 'status-published';
+                const historyHTML = article.versionHistory.map(v => 
+                    `<li>v${v.version}: ${v.note} (${new Date(v.date).toLocaleDateString()})</li>`
+                ).join('');
+
+                div.innerHTML = `
+                    <h3>${article.title}</h3>
+                    <p><strong>Status:</strong> <span class="status ${statusClass}">${article.status}</span></p>
+                    <div style="font-size: 0.8em; color: #555;">
+                        <strong>History:</strong>
+                        <ul style="margin: 5px 0; padding-left: 20px;">${historyHTML}</ul>
+                    </div>
+                    <p>${article.rawContent}</p>
+                    <small>Source File: ${article.fileName}</small>
+                    <br><br>
+                    ${isDraft ? `<button onclick="publishArticle(${article.id})">Approve & Publish</button>` : '✅ Content Live'}
+                    <button onclick="deleteArticle(${article.id})" style="background: #666; margin-left: 10px;">Delete</button>
+                `;
+                list.appendChild(div);
+            });
+        }
+
+        // 3. Handle the "Approve & Publish" button (Global scope)
+        function publishArticle(id) {
+            if (!confirm("Are you sure you want to publish this article?")) return;
+
+            fetch(`/api/articles/${id}/publish`, { method: 'PATCH' })
+                .then(res => {
+                    if (res.ok) {
+                        alert('Article Published!');
+                        loadArticles(); // Reload data to show updated status
+                    } else {
+                        alert('Failed to update status. Check if server.js has the PATCH endpoint.');
+                    }
+                })
+                .catch(err => console.error("Error:", err));
+        }
+
+        // 4. Search bar functionality
+        function applyFilters() {
+            const query = document.getElementById('search-input').value.toLowerCase();
+            const status = document.getElementById('status-filter').value;
+            const tag = document.getElementById('tag-filter').value;
+
+            const filtered = allArticles.filter(a => {
+                const matchesSearch = a.title.toLowerCase().includes(query);
+                const matchesStatus = (status === 'all' || a.status === status);
+                const matchesTag = (tag === 'all' || a.tags.includes(tag));
+                return matchesSearch && matchesStatus && matchesTag;
+            });
+
+            renderArticles(filtered);
+        }
+
+        // Initial launch
+        loadArticles();
+
+        function deleteArticle(id) {
+            if (!confirm("Are you sure you want to delete this article? This cannot be undone.")) return;
+
+            fetch(`/api/articles/${id}`, { method: 'DELETE' })
+                .then(res => {
+                    if (res.status === 204) {
+                        alert('Article Deleted');
+                        loadArticles(); // Refresh the list
+                    } else {
+                        alert('Error deleting article.');
+                    }
+                });
+        }
+    </script>
+</body>
+</html>

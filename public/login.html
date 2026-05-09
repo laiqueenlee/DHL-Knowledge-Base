@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>DHL Login</title>
+    <style>
+        body { font-family: Arial; display: flex; justify-content: center; align-items: center; height: 100vh; background: #d40511; }
+        .login-card { background: white; padding: 30px; border-radius: 8px; box-shadow: 0 4px 10px rgba(0,0,0,0.3); text-align: center; }
+        input { width: 80%; padding: 10px; margin: 10px 0; border: 1px solid #ccc; }
+        button { background: #ffcc00; border: none; padding: 10px 20px; font-weight: bold; cursor: pointer; }
+    </style>
+</head>
+<body>
+    <div class="login-card">
+        <h2>DHL Admin Login</h2>
+        <input type="password" id="password" placeholder="Enter Admin Password">
+        <br>
+        <button onclick="login()">Login</button>
+    </div>
+
+    <script>
+        function login() {
+            const pass = document.getElementById('password').value;
+            if (pass === 'dhl123') {
+                localStorage.setItem('dhl_auth', 'true'); // Save login status
+                window.location.href = 'index.html';
+            } else {
+                alert('Wrong password!');
+            }
+        }
+    </script>
+</body>
+</html>
