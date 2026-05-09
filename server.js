@@ -6,11 +6,9 @@ const app = express();
 app.use(express.json({ limit: '50mb' }));
 app.use(express.urlencoded({ limit: '50mb', extended: true }));
 
-// 1. Tell Express where your 'public' folder is located
 const publicPath = path.join(__dirname, 'public');
 app.use(express.static(publicPath));
 
-// 2. Explicitly serve index.html when you hit the root URL '/'
 app.get('/', (req, res) => {
     res.sendFile(path.join(publicPath, 'index.html'));
 });
@@ -18,7 +16,6 @@ app.get('/', (req, res) => {
 
 const DATA_FILE = './database.json';
 
-// Helper function to read/write JSON "Database"
 const saveToDb = (newData) => {
     let data = [];
     if (fs.existsSync(DATA_FILE)) {
@@ -28,8 +25,6 @@ const saveToDb = (newData) => {
     fs.writeFileSync(DATA_FILE, JSON.stringify(data, null, 2));
 };
 
-// POST Endpoint for RPA Bot/Postman
-// Updated Ingest with full schema
 app.post('/api/ingest', (req, res) => {
     const { title, rawContent, fileName } = req.body;
     let data = JSON.parse(fs.readFileSync(DATA_FILE));
@@ -52,7 +47,6 @@ app.post('/api/ingest', (req, res) => {
     res.status(201).json(newArticle);
 });
 
-// New Delete Endpoint
 app.delete('/api/articles/:id', (req, res) => {
     const id = parseInt(req.params.id);
     let data = JSON.parse(fs.readFileSync(DATA_FILE));
@@ -61,14 +55,12 @@ app.delete('/api/articles/:id', (req, res) => {
     res.status(204).send();
 });
 
-// GET Endpoint to see all articles (for your future Web View)
 app.get('/api/articles', (req, res) => {
     if (!fs.existsSync(DATA_FILE)) return res.json([]);
     const data = JSON.parse(fs.readFileSync(DATA_FILE));
     res.json(data);
 });
 
-// Endpoint to update article status to Published
 app.patch('/api/articles/:id/publish', (req, res) => {
     const id = parseInt(req.params.id);
     let data = JSON.parse(fs.readFileSync(DATA_FILE));
