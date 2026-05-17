@@ -10,7 +10,7 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
-    "@google/genai": "^2.3.0",
+    "@google/genai": "^2.2.0",
     "@google/generative-ai": "^0.24.1",
     "express": "^5.2.1",
     "mammoth": "^1.12.0",
