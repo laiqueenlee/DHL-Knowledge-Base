@@ -2,180 +2,104 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>DHL Knowledge Base</title>
-    <style>
-        body { font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; margin: 40px; background: #f4f4f4; color: #333; }
-        h1 { color: #d40511; border-bottom: 3px solid #ffcc00; padding-bottom: 10px; }
-        
-        /* Search Bar Styling */
-        #search-container { margin-bottom: 20px; }
-        #search-input { padding: 10px; width: 300px; border: 1px solid #ccc; border-radius: 4px; }
-
-        /* Card Styling */
-        .card { 
-            background: white; 
-            padding: 20px; 
-            margin-bottom: 15px; 
-            border-left: 6px solid #ffcc00; 
-            box-shadow: 0 4px 6px rgba(0,0,0,0.1); 
-            border-radius: 4px;
-        }
-        .status { font-weight: bold; padding: 2px 8px; border-radius: 12px; font-size: 0.9em; }
-        .status-draft { background: #fff3cd; color: #856404; }
-        .status-published { background: #d4edda; color: #155724; }
-        
-        /* Button Styling */
-        button { 
-            background: #d40511; 
-            color: white; 
-            border: none; 
-            padding: 10px 20px; 
-            cursor: pointer; 
-            border-radius: 4px; 
-            font-weight: bold; 
-            transition: background 0.3s;
-        }
-        button:hover { background: #990000; }
-        small { color: #666; font-style: italic; }
-    </style>
+    <link rel="stylesheet" href="/css/styles.css">
 </head>
 <body>
-
-    <button onclick="logout()" style="float: right; background: #666;">Logout</button>
+    <button id="logout-btn" class="logout-btn">Logout</button>
+    <div id="user-info" class="user-info">
+        <span id="welcome-message"></span>
+        <span id="role-badge"></span>
+    </div>
 
     <h1>DHL Logistics: Knowledge Base Articles</h1>
 
-    <div id="filter-container" style="background: #eee; padding: 15px; margin-bottom: 20px; border-radius: 5px; display: flex; gap: 10px;">
-        <input type="text" id="search-input" placeholder="Search title..." onkeyup="applyFilters()">
+
+    <div id="editor-workspace" class="editor-workspace">
+        <div class="workspace-content">
+            <h2>Article Workspace</h2>
+            <label for="edit-id" style="display: none;">Article ID</label>
+            <input type="hidden" id="edit-id">
+            
+            <label for="edit-title">Article Title</label>
+            <input type="text" id="edit-title" class="workspace-input" placeholder="Enter article title...">
+            
+            <label for="edit-steps">Content/Steps</label>
+            <textarea id="edit-steps" class="workspace-textarea" placeholder="Enter content or steps..."></textarea>
+            
+            <div class="workspace-actions">
+                <button id="save-changes-btn" class="btn btn-success">Save Version</button>
+                <button id="close-workspace-btn" class="btn btn-secondary">Close</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Action Buttons -->
+    <div class="action-buttons">
+        <button id="create-article-btn" class="btn btn-success">+ Create Manual Article</button>
+        <button id="upload-file-btn" class="btn btn-primary">+ Upload File (.docx, .pdf, .txt)</button>
+        <input type="file" id="file-input" style="display:none" accept=".docx,.pdf,.txt">
+    </div>
+
+    <!-- Manual Entry Form -->
+    <form id="manual-form" class="manual-form" style="display:none;">
+        <h3>Manual Entry</h3>
+        <input 
+            type="text" 
+            id="m-title" 
+            class="form-input" 
+            placeholder="Enter Article Title..." 
+            required>
         
-        <select id="status-filter" onchange="applyFilters()">
+        <select id="m-tags" class="form-input" required>
+            <option value="">-- Select Category --</option>
+            <option value="General">General</option>
+            <option value="Logistics">Logistics</option>
+            <option value="IT Support">IT Support</option>
+            <option value="RPA">RPA</option>
+            <option value="Warehouse">Warehouse</option>
+        </select>
+
+        <textarea 
+            id="m-content" 
+            class="form-textarea" 
+            placeholder="Type or paste content here..." 
+            required></textarea>
+        
+        <button type="submit" class="btn btn-success">Submit Article</button>
+    </form>
+
+    <!-- Filter Container -->
+    <div id="filter-container" class="filter-container">
+        <strong>Filters:</strong>
+        <input 
+            type="text" 
+            id="search-input" 
+            class="filter-input" 
+            placeholder="Search title...">
+        
+        <select id="status-filter" class="filter-select">
             <option value="all">All Statuses</option>
             <option value="Draft">Draft</option>
+            <option value="Reviewed">Reviewed</option>
             <option value="Published">Published</option>
         </select>
 
-        <select id="tag-filter" onchange="applyFilters()">
+        <select id="tag-filter" class="filter-select">
             <option value="all">All Tags</option>
             <option value="Logistics">Logistics</option>
+            <option value="IT Support">IT Support</option>
             <option value="RPA">RPA</option>
+            <option value="Warehouse">Warehouse</option>
         </select>
     </div>
 
-    <div id="articles-list">Loading articles...</div>
+    <div id="articles-list" class="articles-list">Loading articles...</div>
 
-    <script>
-
-        // Check if user is logged in. If not, send them to login page.
-        if (localStorage.getItem('dhl_auth') !== 'true') {
-            window.location.href = 'login.html';
-        }
-
-        function logout() {
-            localStorage.removeItem('dhl_auth');
-            window.location.href = 'login.html';
-        }
-
-        let allArticles = [];
-
-        // 1. Load articles from the server
-        function loadArticles() {
-            fetch('/api/articles')
-                .then(res => res.json())
-                .then(data => {
-                    allArticles = data;
-                    renderArticles(allArticles);
-                })
-                .catch(err => {
-                    document.getElementById('articles-list').innerText = "Error loading data.";
-                    console.error(err);
-                });
-        }
-
-        // 2. Display the articles on the screen
-        function renderArticles(articles) {
-            const list = document.getElementById('articles-list');
-            list.innerHTML = ''; 
-
-            if (articles.length === 0) {
-                list.innerHTML = '<p>No articles found.</p>';
-                return;
-            }
-
-            articles.forEach(article => {
-                const div = document.createElement('div');
-                div.className = 'card';
-                
-                const isDraft = article.status === 'Draft';
-                const statusClass = isDraft ? 'status-draft' : 'status-published';
-                const historyHTML = article.versionHistory.map(v => 
-                    `<li>v${v.version}: ${v.note} (${new Date(v.date).toLocaleDateString()})</li>`
-                ).join('');
-
-                div.innerHTML = `
-                    <h3>${article.title}</h3>
-                    <p><strong>Status:</strong> <span class="status ${statusClass}">${article.status}</span></p>
-                    <div style="font-size: 0.8em; color: #555;">
-                        <strong>History:</strong>
-                        <ul style="margin: 5px 0; padding-left: 20px;">${historyHTML}</ul>
-                    </div>
-                    <p>${article.rawContent}</p>
-                    <small>Source File: ${article.fileName}</small>
-                    <br><br>
-                    ${isDraft ? `<button onclick="publishArticle(${article.id})">Approve & Publish</button>` : '✅ Content Live'}
-                    <button onclick="deleteArticle(${article.id})" style="background: #666; margin-left: 10px;">Delete</button>
-                `;
-                list.appendChild(div);
-            });
-        }
-
-        // 3. Handle the "Approve & Publish" button (Global scope)
-        function publishArticle(id) {
-            if (!confirm("Are you sure you want to publish this article?")) return;
-
-            fetch(`/api/articles/${id}/publish`, { method: 'PATCH' })
-                .then(res => {
-                    if (res.ok) {
-                        alert('Article Published!');
-                        loadArticles(); // Reload data to show updated status
-                    } else {
-                        alert('Failed to update status. Check if server.js has the PATCH endpoint.');
-                    }
-                })
-                .catch(err => console.error("Error:", err));
-        }
-
-        // 4. Search bar functionality
-        function applyFilters() {
-            const query = document.getElementById('search-input').value.toLowerCase();
-            const status = document.getElementById('status-filter').value;
-            const tag = document.getElementById('tag-filter').value;
-
-            const filtered = allArticles.filter(a => {
-                const matchesSearch = a.title.toLowerCase().includes(query);
-                const matchesStatus = (status === 'all' || a.status === status);
-                const matchesTag = (tag === 'all' || a.tags.includes(tag));
-                return matchesSearch && matchesStatus && matchesTag;
-            });
-
-            renderArticles(filtered);
-        }
-
-        // Initial launch
-        loadArticles();
-
-        function deleteArticle(id) {
-            if (!confirm("Are you sure you want to delete this article? This cannot be undone.")) return;
-
-            fetch(`/api/articles/${id}`, { method: 'DELETE' })
-                .then(res => {
-                    if (res.status === 204) {
-                        alert('Article Deleted');
-                        loadArticles(); // Refresh the list
-                    } else {
-                        alert('Error deleting article.');
-                    }
-                });
-        }
-    </script>
+    <script src="js/api.js"></script>
+    <script src="js/ui.js"></script>
+    <script src="js/filters.js"></script>
+    <script src="js/main.js"></script>
 </body>
 </html>

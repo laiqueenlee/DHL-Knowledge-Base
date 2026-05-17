@@ -1,0 +1,503 @@
+* {
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    margin: 0;
+    padding: 40px;
+    background: #f4f4f4;
+    color: #333;
+}
+
+h1 {
+    color: #d40511;
+    border-bottom: 3px solid #ffcc00;
+    padding-bottom: 10px;
+    margin-top: 0;
+}
+
+h2 {
+    color: #333;
+    margin-bottom: 20px;
+}
+
+h3 {
+    color: #333;
+    margin-top: 0;
+}
+
+label {
+    display: block;
+    font-weight: bold;
+    margin-top: 10px;
+    margin-bottom: 5px;
+    color: #333;
+}
+
+.btn {
+    border: none;
+    padding: 10px 20px;
+    cursor: pointer;
+    border-radius: 4px;
+    font-weight: bold;
+    transition: background 0.3s ease, transform 0.2s ease;
+    font-size: 0.95em;
+}
+
+.btn:hover {
+    transform: translateY(-2px);
+}
+
+.btn-primary {
+    background: #007bff;
+    color: white;
+}
+
+.btn-primary:hover {
+    background: #0056b3;
+}
+
+.btn-success {
+    background: #28a745;
+    color: white;
+}
+
+.btn-success:hover {
+    background: #218838;
+}
+
+.btn-secondary {
+    background: #666;
+    color: white;
+}
+
+.btn-secondary:hover {
+    background: #555;
+}
+
+.btn-danger {
+    background: #dc3545;
+    color: white;
+}
+
+.btn-danger:hover {
+    background: #c82333;
+}
+
+.btn-info {
+    background: #17a2b8;
+    color: white;
+}
+
+.btn-info:hover {
+    background: #138496;
+}
+
+.logout-btn {
+    float: right;
+    background: #666;
+    color: white;
+    padding: 8px 16px;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    font-weight: bold;
+    font-size: 0.9em;
+    transition: background 0.3s ease;
+}
+
+.user-info {
+    margin: 0 0 15px 0;
+    font-size: 0.95em;
+    color: #333;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.user-info #role-badge {
+    display: inline-block;
+    background: #d40511;
+    color: white;
+    padding: 4px 10px;
+    border-radius: 12px;
+    font-size: 0.85em;
+}
+
+.logout-btn:hover {
+    background: #555;
+}
+
+.action-buttons {
+    margin-bottom: 20px;
+    display: flex;
+    gap: 10px;
+    flex-wrap: wrap;
+}
+
+.manual-form {
+    background: white;
+    padding: 20px;
+    margin-bottom: 20px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+}
+
+.form-input,
+.form-textarea {
+    width: 100%;
+    padding: 8px;
+    margin-bottom: 10px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    font-family: inherit;
+    font-size: 0.95em;
+}
+
+.form-input:focus,
+.form-textarea:focus {
+    outline: none;
+    border-color: #d40511;
+    box-shadow: 0 0 5px rgba(212, 5, 17, 0.3);
+}
+
+.form-textarea {
+    height: 150px;
+    resize: vertical;
+}
+
+.filter-container {
+    background: #eee;
+    padding: 15px;
+    margin-bottom: 20px;
+    border-radius: 5px;
+    display: flex;
+    gap: 10px;
+    align-items: center;
+    flex-wrap: wrap;
+}
+
+.filter-input,
+.filter-select {
+    padding: 8px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    font-size: 0.95em;
+}
+
+.filter-input {
+    min-width: 250px;
+    flex: 1;
+}
+
+.filter-input:focus,
+.filter-select:focus {
+    outline: none;
+    border-color: #d40511;
+}
+
+.articles-list {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+}
+
+.articles-list > p {
+    text-align: center;
+    color: #999;
+    padding: 40px 20px;
+    font-size: 1.05em;
+}
+
+.card {
+    background: white;
+    padding: 20px;
+    border-left: 6px solid #ffcc00;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    border-radius: 4px;
+    transition: box-shadow 0.3s ease;
+}
+
+.card:hover {
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15);
+}
+
+.card-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    margin-bottom: 15px;
+}
+
+.card-title {
+    margin: 0;
+    flex: 1;
+    color: #333;
+}
+
+.status {
+    font-weight: bold;
+    padding: 6px 12px;
+    border-radius: 12px;
+    font-size: 0.75em;
+    text-transform: uppercase;
+    white-space: nowrap;
+    border: 1px solid;
+}
+
+.status.draft {
+    background: #fff3cd;
+    color: #856404;
+    border-color: #ffeeba;
+}
+
+.status.published {
+    background: #d4edda;
+    color: #155724;
+    border-color: #c3e6cb;
+}
+
+.status-published-badge {
+    display: inline-block;
+    margin-left: 10px;
+    color: #28a745;
+    font-weight: bold;
+    font-size: 0.9em;
+}
+
+.tag {
+    background: #007bff;
+    color: white;
+    padding: 4px 8px;
+    border-radius: 4px;
+    font-size: 0.75em;
+    margin-right: 5px;
+    display: inline-block;
+    margin-bottom: 5px;
+}
+
+.tags-container {
+    margin-bottom: 10px;
+}
+
+.ai-summary {
+    color: #d40511;
+    font-weight: bold;
+    font-size: 0.9em;
+    background: #fff0f0;
+    padding: 8px;
+    border-radius: 4px;
+    margin-bottom: 10px;
+}
+
+.content-section {
+    background: #f9f9f9;
+    padding: 15px;
+    border: 1px solid #ddd;
+    margin: 10px 0;
+    border-radius: 4px;
+}
+
+.content-section strong {
+    display: block;
+    margin-bottom: 10px;
+    color: #333;
+}
+
+.content-steps {
+    white-space: pre-wrap;
+    font-family: inherit;
+    color: #555;
+    line-height: 1.5;
+}
+
+.metadata {
+    font-size: 0.85em;
+    color: #666;
+    background: #fdfdfd;
+    padding: 10px;
+    border-radius: 4px;
+    margin: 10px 0;
+    border-top: 1px solid #eee;
+}
+
+.metadata strong {
+    color: #333;
+}
+
+.metadata span {
+    display: inline-block;
+    margin-right: 15px;
+}
+
+.version-history {
+    font-size: 0.8em;
+    color: #555;
+    margin-top: 10px;
+}
+
+.version-history strong {
+    display: block;
+    margin-bottom: 5px;
+    color: #333;
+}
+
+.version-history ul {
+    margin: 5px 0;
+    padding-left: 20px;
+}
+
+.version-history li {
+    margin-bottom: 4px;
+    color: #666;
+}
+
+.card-actions {
+    margin-top: 15px;
+    display: flex;
+    gap: 10px;
+    flex-wrap: wrap;
+    align-items: center;
+}
+
+.card-actions .btn {
+    padding: 8px 16px;
+    font-size: 0.9em;
+}
+
+.editor-workspace {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.85);
+    z-index: 1000;
+    overflow-y: auto;
+}
+
+.workspace-content {
+    background: white;
+    margin: 2% auto;
+    padding: 30px;
+    width: 80%;
+    max-width: 900px;
+    border-radius: 8px;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
+}
+
+.workspace-input,
+.workspace-textarea {
+    width: 100%;
+    padding: 8px;
+    margin-bottom: 15px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    font-family: inherit;
+    font-size: 0.95em;
+}
+
+.workspace-input:focus,
+.workspace-textarea:focus {
+    outline: none;
+    border-color: #d40511;
+    box-shadow: 0 0 5px rgba(212, 5, 17, 0.3);
+}
+
+.workspace-textarea {
+    height: 350px;
+    resize: vertical;
+}
+
+.workspace-actions {
+    margin-top: 20px;
+    display: flex;
+    gap: 10px;
+}
+
+.workspace-actions .btn {
+    flex: 1;
+    max-width: 200px;
+}
+
+@media (max-width: 768px) {
+    body {
+        padding: 20px;
+    }
+
+    .action-buttons {
+        flex-direction: column;
+    }
+
+    .action-buttons .btn {
+        width: 100%;
+    }
+
+    .filter-container {
+        flex-direction: column;
+    }
+
+    .filter-input,
+    .filter-select {
+        width: 100%;
+    }
+
+    .card-header {
+        flex-direction: column;
+        gap: 10px;
+    }
+
+    .status {
+        align-self: flex-start;
+    }
+
+    .card-actions {
+        flex-direction: column;
+    }
+
+    .card-actions .btn {
+        width: 100%;
+    }
+
+    .workspace-content {
+        width: 95%;
+        margin: 5% auto;
+        padding: 20px;
+    }
+
+    .logout-btn {
+        float: none;
+        display: block;
+        width: 100%;
+        margin-bottom: 10px;
+    }
+
+    h1 {
+        margin-bottom: 10px;
+    }
+}
+
+@media (max-width: 480px) {
+    body {
+        padding: 15px;
+    }
+
+    h1 {
+        font-size: 1.5em;
+    }
+
+    .card {
+        padding: 15px;
+    }
+
+    .filter-container strong {
+        width: 100%;
+    }
+
+    .workspace-textarea {
+        height: 250px;
+    }
+}

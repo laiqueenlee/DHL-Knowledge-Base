@@ -1,0 +1,22 @@
+[
+  {
+    "username": "john",
+    "password": "admin",
+    "role": "Editor"
+  },
+  {
+    "username": "sarah",
+    "password": "admin",
+    "role": "Reviewer"
+  },
+  {
+    "username": "mike",
+    "password": "admin",
+    "role": "Editor"
+  },
+  {
+    "username": "alice",
+    "password": "admin",
+    "role": "Reviewer"
+  }
+]

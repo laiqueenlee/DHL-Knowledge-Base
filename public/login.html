@@ -12,20 +12,55 @@
 <body>
     <div class="login-card">
         <h2>DHL Admin Login</h2>
-        <input type="password" id="password" placeholder="Enter Admin Password">
+        <input type="text" id="username" placeholder="Enter Username">
+        <br>
+        <input type="password" id="password" placeholder="Enter Password">
         <br>
         <button onclick="login()">Login</button>
+        <p id="error-msg" style="color: red; margin-top: 10px; display: none;"></p>
     </div>
 
     <script>
         function login() {
-            const pass = document.getElementById('password').value;
-            if (pass === 'dhl123') {
-                localStorage.setItem('dhl_auth', 'true'); // Save login status
-                window.location.href = 'index.html';
-            } else {
-                alert('Wrong password!');
+            const username = document.getElementById('username').value.trim();
+            const password = document.getElementById('password').value;
+            const errorMsg = document.getElementById('error-msg');
+            errorMsg.style.display = 'none';
+            errorMsg.textContent = '';
+
+            if (!username) {
+                errorMsg.textContent = 'Please enter a username.';
+                errorMsg.style.display = 'block';
+                return;
             }
+            if (!password) {
+                errorMsg.textContent = 'Please enter a password.';
+                errorMsg.style.display = 'block';
+                return;
+            }
+
+            fetch('/api/login', {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify({ username, password })
+            })
+            .then(res => res.json())
+            .then(data => {
+                if (data.success) {
+                    localStorage.setItem('dhl_auth', 'true');
+                    localStorage.setItem('dhl_user', data.username);
+                    localStorage.setItem('dhl_role', data.role);
+                    window.location.href = '/index.html';
+                } else {
+                    errorMsg.textContent = data.error || 'Login failed.';
+                    errorMsg.style.display = 'block';
+                }
+            })
+            .catch(err => {
+                console.error('Login error:', err);
+                errorMsg.textContent = 'Server error. Please try again.';
+                errorMsg.style.display = 'block';
+            });
         }
     </script>
 </body>
