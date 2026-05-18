@@ -1,0 +1,93 @@
+{
+  "version": "2.0",
+  "resources": [
+    {
+      "activityDisplayName": "Use Google Drive",
+      "activityId": "GoogleDriveApplicationScope_1",
+      "resource": "Connection",
+      "key": "10e053e9-015b-451c-8db9-8b045ce6758d",
+      "id": "Connection10e053e9-015b-451c-8db9-8b045ce6758d10e053e9-015b-451c-8db9-8b045ce6758dFalse",
+      "value": {
+        "ConnectionId": {
+          "defaultValue": "10e053e9-015b-451c-8db9-8b045ce6758d",
+          "isExpression": false,
+          "displayName": "Connection",
+          "description": "The connection to be used"
+        }
+      },
+      "metadata": {
+        "BindingsVersion": "2.2",
+        "Connector": "uipath-google-drive",
+        "UseConnectionService": "True"
+      }
+    },
+    {
+      "activityDisplayName": "For Each File or Folder",
+      "activityId": "ForEachFileFolderConnections_1",
+      "resource": "Connection",
+      "key": "6dd1213e-7532-4090-88a7-aad8d7c5fe3e",
+      "id": "Connection6dd1213e-7532-4090-88a7-aad8d7c5fe3e6dd1213e-7532-4090-88a7-aad8d7c5fe3eFalse",
+      "value": {
+        "ConnectionId": {
+          "defaultValue": "6dd1213e-7532-4090-88a7-aad8d7c5fe3e",
+          "isExpression": false,
+          "displayName": "Connection",
+          "description": "The connection to be used"
+        }
+      },
+      "metadata": {
+        "BindingsVersion": "2.2",
+        "Connector": "uipath-google-drive",
+        "UseConnectionService": "True"
+      }
+    },
+    {
+      "activityDisplayName": "For Each File or Folder",
+      "activityId": "ForEachFileFolderConnections_1",
+      "resource": "Property",
+      "key": "6dd1213e-7532-4090-88a7-aad8d7c5fe3e.For Each File or Folder",
+      "id": "Property6dd1213e-7532-4090-88a7-aad8d7c5fe3e.For Each File or FolderDHL Knowledge SourceFalsehttps://drive.google.com/drive/folders/1qJA7O2AhlgNbrP5dpRAfMUbEmNsym0mBFalse",
+      "value": {
+        "FullName": {
+          "defaultValue": "DHL Knowledge Source",
+          "isExpression": false,
+          "displayName": "In location",
+          "description": "The location where to search for files and folders. If left blank, it searches anywhere in Google Drive"
+        },
+        "ID": {
+          "defaultValue": "https://drive.google.com/drive/folders/1qJA7O2AhlgNbrP5dpRAfMUbEmNsym0mB",
+          "isExpression": false,
+          "displayName": "In location",
+          "description": "The location where to search for files and folders. If left blank, it searches anywhere in Google Drive"
+        }
+      },
+      "metadata": {
+        "BindingsVersion": "2.1",
+        "ActivityName": "For Each File or Folder",
+        "ObjectName": "CuratedFolder",
+        "DisplayLabel": "FullName",
+        "ParentResourceKey": "Connection.6dd1213e-7532-4090-88a7-aad8d7c5fe3e"
+      }
+    },
+    {
+      "activityDisplayName": "Send SMTP Email",
+      "activityId": "SendMail_1",
+      "resource": "Connection",
+      "key": "81bbf5f5-ab1d-4f23-a761-d1a63fd81c2b",
+      "id": "Connection81bbf5f5-ab1d-4f23-a761-d1a63fd81c2b81bbf5f5-ab1d-4f23-a761-d1a63fd81c2bFalse",
+      "value": {
+        "ConnectionId": {
+          "defaultValue": "81bbf5f5-ab1d-4f23-a761-d1a63fd81c2b",
+          "isExpression": false,
+          "displayName": "Connection",
+          "description": "The connection to be used"
+        }
+      },
+      "metadata": {
+        "BindingsVersion": "2.2",
+        "UseConnectionService": "True",
+        "Connector": "uipath-mail-mail"
+      }
+    }
+  ]
+}

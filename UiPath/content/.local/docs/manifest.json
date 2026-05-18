@@ -1,0 +1,5 @@
+{
+  "UiPath.GSuite.Activities": "3.9.0-preview",
+  "UiPath.Mail.Activities": "2.9.0-preview",
+  "UiPath.Word.Activities": "2.5.1"
+}
