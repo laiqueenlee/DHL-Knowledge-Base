@@ -1,212 +1,200 @@
 [
   {
-    "id": 1778335033928,
-    "title": "Customer address invalid.",
-    "summary": "Customer address invalid.  Team chat says postcode missing.  Fix:  Add postcode manually,  Revalidat...",
-    "steps": "Customer address invalid.  Team chat says postcode missing.  Fix:  Add postcode manually,  Revalidate address,  Save and continue booking.",
+    "id": 1779065929048,
+    "title": "Customer address invalid",
+    "fileName": "Customer address invalid.",
+    "summary": "No content",
+    "steps": "Customer address invalid.\nTeam chat says postcode missing.\nFix:\nAdd postcode manually,\nevalidate address,\nSave and continue booking.",
     "tags": [
-      "Logistics",
-      "RPA"
+      "General"
     ],
-    "date": "2026-05-09",
-    "creator": "UiPath Bot",
     "status": "Draft",
+    "author": "RPA Bot",
+    "date": "2026-05-18",
+    "createdAt": "2026-05-18T00:58:49.048Z",
     "versionHistory": [
       {
         "version": 1,
-        "date": "2026-05-09T13:57:13.933Z",
+        "date": "2026-05-18T00:58:49.048Z",
         "note": "Initial Ingestion"
       }
-    ],
-    "fileName": "Customer address invalid..txt"
+    ]
   },
   {
-    "id": 1778335034181,
+    "id": 1779065932648,
     "title": "Error Code AUTH_401",
-    "summary": "Error Code: AUTH_401  User not authorized to access module.  Resolution:  - Check AD group access  -...",
-    "steps": "Error Code: AUTH_401  User not authorized to access module.  Resolution:  - Check AD group access  - User must be in OPS_FWD_ROLE  - Logout and login again",
+    "fileName": "Error Code AUTH_401",
+    "summary": "User not authorized to access module.",
+    "steps": "Error Code: AUTH_401\nUser not authorized to access module.\nResolution:\n- Check AD group access\n- User must be in OPS_FWD_ROLE\n- Logout and login again",
     "tags": [
-      "Logistics",
-      "RPA"
+      "General"
     ],
-    "date": "2026-05-09",
-    "creator": "UiPath Bot",
     "status": "Draft",
+    "author": "RPA Bot",
+    "date": "2026-05-18",
+    "createdAt": "2026-05-18T00:58:52.648Z",
     "versionHistory": [
       {
         "version": 1,
-        "date": "2026-05-09T13:57:14.181Z",
+        "date": "2026-05-18T00:58:52.648Z",
         "note": "Initial Ingestion"
       }
-    ],
-    "fileName": "Error Code AUTH_401.txt"
+    ]
   },
   {
-    "id": 1778335034238,
-    "title": "Label not printing properly.",
-    "summary": "Label not printing properly.  Usually printer cache issue.  Restart printer service,  Clear queue,  ...",
-    "steps": "Label not printing properly.  Usually printer cache issue.  Restart printer service,  Clear queue,  Reprint label.  If still blur, change toner.",
+    "id": 1779065934565,
+    "title": "Label not printing properly",
+    "fileName": "Label not printing properly.",
+    "summary": "Label not printing properly.",
+    "steps": "Label not printing properly.\nUsually printer cache issue.\nRestart printer service,\nClear queue,\nReprint label.\nIf still blur, change toner.",
     "tags": [
-      "Logistics",
-      "RPA"
+      "General"
     ],
-    "date": "2026-05-09",
-    "creator": "UiPath Bot",
     "status": "Draft",
+    "author": "RPA Bot",
+    "date": "2026-05-18",
+    "createdAt": "2026-05-18T00:58:54.565Z",
     "versionHistory": [
       {
         "version": 1,
-        "date": "2026-05-09T13:57:14.238Z",
+        "date": "2026-05-18T00:58:54.565Z",
         "note": "Initial Ingestion"
       }
-    ],
-    "fileName": "Label not printing properly..txt"
+    ]
   },
   {
-    "id": 1778335034329,
+    "id": 1779065936259,
     "title": "New staff setup steps",
-    "summary": "New staff setup steps:  ✔ Create AD account  ✔ Give email access  ✔ SAP + CW1 role  ✔ Share SOP fold...",
-    "steps": "New staff setup steps:  ✔ Create AD account  ✔ Give email access  ✔ SAP + CW1 role  ✔ Share SOP folder  Delay usually because SAP request not approved",
+    "fileName": "New staff setup steps",
+    "summary": "New staff setup steps and common delay reasons.",
+    "steps": "﻿New staff setup steps:\n✔ Create AD account\n✔ Give email access\n✔ SAP + CW1 role\n✔ Share SOP folder\nDelay usually because SAP request not approved",
     "tags": [
-      "Logistics",
-      "RPA"
+      "General"
     ],
-    "date": "2026-05-09",
-    "creator": "UiPath Bot",
     "status": "Draft",
+    "author": "RPA Bot",
+    "date": "2026-05-18",
+    "createdAt": "2026-05-18T00:58:56.259Z",
     "versionHistory": [
       {
         "version": 1,
-        "date": "2026-05-09T13:57:14.329Z",
+        "date": "2026-05-18T00:58:56.259Z",
         "note": "Initial Ingestion"
       }
-    ],
-    "fileName": "New staff setup steps.txt"
+    ]
   },
   {
-    "id": 1778335034403,
+    "id": 1779065938115,
     "title": "POD upload failed again",
-    "summary": "POD upload failed again 😓  Error msg: “File size too large”  Just compress the image before uploadi...",
-    "steps": "POD upload failed again 😓  Error msg: “File size too large”  Just compress the image before uploading.  JPEG works better than PNG.  After upload, refresh screen twice.",
+    "fileName": "POD upload failed again",
+    "summary": "POD upload failed due to excessive file size. Compress and refresh to fix it.",
+    "steps": "POD upload failed again 😓\nError msg: “File size too large”\nJust compress the image before uploading.\nJPEG works better than PNG.\nAfter upload, refresh screen twice.\ncxxx",
     "tags": [
-      "Logistics",
-      "RPA"
+      "General"
     ],
-    "date": "2026-05-09",
-    "creator": "UiPath Bot",
     "status": "Draft",
+    "author": "RPA Bot",
+    "date": "2026-05-18",
+    "createdAt": "2026-05-18T00:58:58.115Z",
     "versionHistory": [
       {
         "version": 1,
-        "date": "2026-05-09T13:57:14.403Z",
+        "date": "2026-05-18T00:58:58.115Z",
         "note": "Initial Ingestion"
+      },
+      {
+        "version": 2,
+        "date": "2026-05-18T02:09:07.608Z",
+        "note": "Manual Revision"
       }
-    ],
-    "fileName": "POD upload failed again.txt"
+    ]
   },
   {
-    "id": 1778342165884,
-    "title": "Customer address invalid..txt",
-    "summary": "Customer address invalid.  Team chat says postcode missing.  Fix:  Add postcode manually,  Revalidat...",
-    "steps": "Customer address invalid.  Team chat says postcode missing.  Fix:  Add postcode manually,  Revalidate address,  Save and continue booking.",
+    "id": 1779070204473,
+    "title": "POD upload failed again",
+    "fileName": "POD upload failed again.txt",
+    "summary": "This procedure outlines how to resolve a \"file size too large\" error when uploading Proof of Delivery (POD) documents to the system.",
+    "steps": "1. Compress the image file to reduce its size.\n2. Convert the image to JPEG format instead of PNG for better compatibility.\n3. Upload the compressed JPEG file.\n4. Refresh the screen twice after the upload is complete.\n5. xxx",
     "tags": [
-      "Logistics",
-      "RPA"
+      "Logistics"
     ],
-    "date": "2026-05-09",
-    "creator": "UiPath Bot",
-    "status": "Draft",
+    "status": "Published",
+    "author": "john",
+    "date": "2026-05-18",
+    "createdAt": "2026-05-18T02:10:04.473Z",
     "versionHistory": [
       {
         "version": 1,
-        "date": "2026-05-09T15:56:05.891Z",
-        "note": "Initial Ingestion"
+        "date": "2026-05-18T02:10:04.473Z",
+        "note": "Manual Upload"
+      },
+      {
+        "version": 2,
+        "date": "2026-05-18T02:10:23.423Z",
+        "note": "Status changed from Draft to Reviewed"
+      },
+      {
+        "version": 3,
+        "date": "2026-05-18T02:10:39.529Z",
+        "note": "Status changed from Reviewed to Published"
+      },
+      {
+        "version": 4,
+        "date": "2026-05-18T03:11:38.839Z",
+        "note": "Manual Revision"
       }
-    ],
-    "fileName": "Customer address invalid..txt"
+    ]
   },
   {
-    "id": 1778342166263,
-    "title": "Error Code AUTH_401.txt",
-    "summary": "Error Code: AUTH_401  User not authorized to access module.  Resolution:  - Check AD group access  -...",
-    "steps": "Error Code: AUTH_401  User not authorized to access module.  Resolution:  - Check AD group access  - User must be in OPS_FWD_ROLE  - Logout and login again",
+    "id": 1779073927926,
+    "title": "Problem with PC",
+    "fileName": "Problem_with_PC.txt",
+    "summary": "This procedure provides a troubleshooting guide to resolve hardware or software conflicts that prevent a computer from completing its shutdown sequence.",
+    "steps": "1. Close all open applications and save any unsaved work.\n2. Open Task Manager (Ctrl+Shift+Esc) to identify and \"End Task\" on any programs that are not responding.\n3. Check for any active Windows Updates that may be processing in the background.\n4. Perform a forced shutdown by pressing and holding the physical power button for 10 seconds.\n5. Disconnect any external USB peripherals or docking stations and attempt a normal restart.\n6. Disable \"Fast Startup\" in the Windows Power Options settings to prevent kernel hibernation issues.\n7. Contact the DHL IT Service Desk if the issue persists to check for BIOS updates or hardware failure.",
     "tags": [
-      "Logistics",
-      "RPA"
+      "IT Support"
     ],
-    "date": "2026-05-09",
-    "creator": "UiPath Bot",
     "status": "Draft",
+    "author": "john",
+    "date": "2026-05-18",
+    "createdAt": "2026-05-18T03:12:07.926Z",
     "versionHistory": [
       {
         "version": 1,
-        "date": "2026-05-09T15:56:06.263Z",
+        "date": "2026-05-18T03:12:07.926Z",
         "note": "Initial Ingestion"
       }
-    ],
-    "fileName": "Error Code AUTH_401.txt"
+    ]
   },
   {
-    "id": 1778342166333,
-    "title": "Label not printing properly..txt",
-    "summary": "Label not printing properly.  Usually printer cache issue.  Restart printer service,  Clear queue,  ...",
-    "steps": "Label not printing properly.  Usually printer cache issue.  Restart printer service,  Clear queue,  Reprint label.  If still blur, change toner.",
+    "id": 1779073948730,
+    "title": "POD upload failed again",
+    "fileName": "POD upload failed again.txt",
+    "summary": "This procedure outlines the troubleshooting steps for resolving \"File size too large\" errors when uploading Proof of Delivery (POD) images.",
+    "steps": "1. Compress the image file to reduce its size.\n2. Convert the image to JPEG format for optimal compatibility.\n3. Upload the compressed JPEG file.\n4. Refresh the screen twice to verify the upload success.",
     "tags": [
-      "Logistics",
-      "RPA"
+      "Logistics"
     ],
-    "date": "2026-05-09",
-    "creator": "UiPath Bot",
-    "status": "Draft",
+    "status": "Published",
+    "author": "john",
+    "date": "2026-05-18",
+    "createdAt": "2026-05-18T03:12:28.729Z",
     "versionHistory": [
       {
         "version": 1,
-        "date": "2026-05-09T15:56:06.333Z",
-        "note": "Initial Ingestion"
-      }
-    ],
-    "fileName": "Label not printing properly..txt"
-  },
-  {
-    "id": 1778342166442,
-    "title": "New staff setup steps.txt",
-    "summary": "New staff setup steps:  ✔ Create AD account  ✔ Give email access  ✔ SAP + CW1 role  ✔ Share SOP fold...",
-    "steps": "New staff setup steps:  ✔ Create AD account  ✔ Give email access  ✔ SAP + CW1 role  ✔ Share SOP folder  Delay usually because SAP request not approved",
-    "tags": [
-      "Logistics",
-      "RPA"
-    ],
-    "date": "2026-05-09",
-    "creator": "UiPath Bot",
-    "status": "Draft",
-    "versionHistory": [
+        "date": "2026-05-18T03:12:28.729Z",
+        "note": "Manual Upload"
+      },
       {
-        "version": 1,
-        "date": "2026-05-09T15:56:06.443Z",
-        "note": "Initial Ingestion"
-      }
-    ],
-    "fileName": "New staff setup steps.txt"
-  },
-  {
-    "id": 1778342166564,
-    "title": "POD upload failed again.txt",
-    "summary": "POD upload failed again 😓  Error msg: “File size too large”  Just compress the image before uploadi...",
-    "steps": "POD upload failed again 😓  Error msg: “File size too large”  Just compress the image before uploading.  JPEG works better than PNG.  After upload, refresh screen twice.",
-    "tags": [
-      "Logistics",
-      "RPA"
-    ],
-    "date": "2026-05-09",
-    "creator": "UiPath Bot",
-    "status": "Draft",
-    "versionHistory": [
+        "version": 2,
+        "date": "2026-05-18T03:13:36.483Z",
+        "note": "Status changed from Draft to Reviewed"
+      },
       {
-        "version": 1,
-        "date": "2026-05-09T15:56:06.564Z",
-        "note": "Initial Ingestion"
+        "version": 3,
+        "date": "2026-05-18T03:13:58.972Z",
+        "note": "Status changed from Reviewed to Published"
       }
-    ],
-    "fileName": "POD upload failed again.txt"
+    ]
   }
 ]
